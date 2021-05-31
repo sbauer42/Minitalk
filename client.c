@@ -20,17 +20,18 @@ int CharTransmit(int c,int pid)
     i = 8;
     while(i)
     {
-        if(c % 2 == 1)
+        if(c & 0x01 == 1)
         {
             if(kill(pid,SIGUSR1) == -1)
                 return (-1);
+            usleep(TIME);
         }
         else
         {
             if(kill(pid,SIGUSR2) == -1)
                 return (-1);
+            usleep(TIME);
         }
-        usleep(ABIT);
         c = c >> 1;
         i--;
     }

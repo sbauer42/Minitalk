@@ -13,7 +13,7 @@
 #ifndef _MINITALK_H
 # define _MINITALK_H
 
-#define ABIT 1000
+#define TIME 1100
 #include    <signal.h>
 #include    <stdio.h>
 #include    <unistd.h>
