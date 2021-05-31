@@ -17,23 +17,20 @@ NEVER USE PRINTF IN A SIGNAL HANDLER PROGRAMM */
 void    custom_handler(int signal, siginfo_t *siginfo, void *unused)
 {
     static  int bit = 1;
-    static  int save = 0;
     static  char c = 0;
 
     (void)unused;
     (void)siginfo;
     if(signal == SIGUSR1)
     {
-        save = save + bit;
-        c = save;
+        c = c | bit;
     }
-    bit = bit * 2;
+    bit = bit << 1;
     if(bit > 128)
     {
         write(1,&c,1);
         bit = 1;
         c = 0;
-        save = 0;
     }
 }
 

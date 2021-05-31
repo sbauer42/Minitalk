@@ -30,9 +30,9 @@ int CharTransmit(int c,int pid)
             if(kill(pid,SIGUSR2) == -1)
                 return (-1);
         }
-        c = c/2;
-        i--;
         usleep(ABIT);
+        c = c >> 1;
+        i--;
     }
     return (0);
 }
