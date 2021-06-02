@@ -46,7 +46,7 @@ int	ft_atoi(char *nptr)
 	r = 0;
 	n = 1;
 	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\r'
-			|| nptr[i] == '\t' || nptr[i] == '\f' || nptr[i] == '\v')
+		|| nptr[i] == '\t' || nptr[i] == '\f' || nptr[i] == '\v')
 		i++;
 	if (nptr[i] == '-')
 		n = -1;
@@ -58,12 +58,12 @@ int	ft_atoi(char *nptr)
 		r += nptr[i] - '0';
 		i++;
 	}
-	return(r * n);
+	return (r * n);
 }
 
 int	ft_strlen(char *s)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (s[x])

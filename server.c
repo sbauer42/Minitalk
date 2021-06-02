@@ -13,7 +13,6 @@
 #include    "minitalk.h"
 /* SIGURS1 == 1 --- SIGURS2 == 0
 NEVER USE PRINTF IN A SIGNAL HANDLER PROGRAMM */
-
 void    custom_handler(int signal)
 {
     static  int bit = 1;
@@ -40,10 +39,11 @@ int main(int ac, char **av)
     write(1,"PID == ",7);
     ft_putnbr_fd(pid, 1);
     write(1,"\n",1);
+    signal(SIGUSR1, custom_handler);
+	signal(SIGUSR2, custom_handler);
     while(1)
     {
-        signal(SIGUSR1, custom_handler);
-		signal(SIGUSR2, custom_handler);
+        pause();
     }
     return (0);
 }

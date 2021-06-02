@@ -13,7 +13,7 @@
 #ifndef _MINITALK_H
 # define _MINITALK_H
 
-#define TIME 1100
+#define TIME 1000
 #include    <signal.h>
 #include    <stdio.h>
 #include    <unistd.h>
