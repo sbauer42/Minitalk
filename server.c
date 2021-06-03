@@ -12,10 +12,13 @@
 
 #include    "minitalk.h"
 /* SIGURS1 == 1 --- SIGURS2 == 0
-NEVER USE PRINTF IN A SIGNAL HANDLER PROGRAMM */
+NEVER USE PRINTF OR MALLOC IN A SIGNAL HANDLER PROGRAMM */
+char	g_str[SIZE];
+
 void	custom_handler(int signal)
 {
 	static int		bit = 1;
+	static int		len = 0;
 	static char	 	c = 0;
 
 	if (signal == SIGUSR1)
@@ -25,7 +28,14 @@ void	custom_handler(int signal)
 	bit = bit << 1;
 	if (bit > 128)
 	{
-		write(1, &c, 1);
+		g_str[len] = c;
+		len++;
+		if ((int)c == 0 || c == '\n')
+		{
+			write(1, g_str, len);
+			len = 0;
+			g_str[len] = c;
+		}
 		bit = 1;
 		c = 0;
 	}
